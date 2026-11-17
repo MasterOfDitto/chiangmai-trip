@@ -171,26 +171,55 @@ header.top p{margin:6px 0 0;font-size:14px;opacity:.92}
 .near-ctl .chips::-webkit-scrollbar{display:none}
 .near-ctl .chip{flex:0 0 auto}
 .chip small{margin-left:6px;font-size:11.5px;opacity:.75}
-.hotel-banner{display:flex;gap:14px;align-items:center;width:calc(100% - 8px);margin:14px 4px 4px;padding:12px;border:0;cursor:pointer;text-align:left;
-  font:inherit;background:var(--stay);color:var(--ink);box-shadow:var(--shadow);border-radius:2px}
-.hotel-banner:focus-visible{outline:none;box-shadow:0 0 0 3px var(--stay-ac),var(--shadow)}
-.hotel-banner img{width:84px;height:84px;object-fit:cover;flex:0 0 auto;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
-.hb-text{display:flex;flex-direction:column;gap:2px;min-width:0}
-.hb-k{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--stay-ac)}
-.hb-name{font-size:18px;font-weight:700;line-height:1.3}
-.hb-m,.hb-s{font-size:13px;color:var(--ink-soft);line-height:1.45}
+/* sticky crumb: the hotel you picked › the category chips */
+.crumb{flex:0 0 auto;border:0;cursor:pointer;font:inherit;font-size:13px;font-weight:700;padding:6px 11px;border-radius:999px;
+  background:var(--stay);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.crumb-sep{flex:0 0 auto;align-self:center;font-weight:700;color:var(--header-ink);text-shadow:0 1px 3px rgba(0,0,0,.4)}
+/* level 1: the hotels */
+.near-label{margin:14px 4px 8px;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--header-ink);text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.hotels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:6px 4px 0}
+.hotel-card{position:relative;display:flex;gap:12px;align-items:center;padding:10px;border:0;border-radius:2px;cursor:pointer;text-align:left;
+  font:inherit;color:var(--ink);background:var(--stay);box-shadow:var(--shadow);opacity:.78;transition:opacity .15s ease, transform .15s ease}
+.hotel-card:hover{opacity:1;transform:translateY(-2px)}
+.hotel-card[aria-pressed="true"]{opacity:1;box-shadow:0 0 0 3px var(--stay-ac),var(--shadow)}
+.hotel-card:focus-visible{outline:none;box-shadow:0 0 0 3px var(--ink),var(--shadow)}
+.hotel-card img{width:72px;height:72px;object-fit:cover;flex:0 0 auto;border:3px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.hc-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.hc-date,.hc-area{font-size:12px;line-height:1.35;color:var(--ink-soft)}
+.hc-name{font-size:15px;font-weight:700;line-height:1.3}
+.hc-on{position:absolute;top:-10px;right:8px;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:var(--stay-ac);color:#fff}
+.range{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:14px 4px 0}
+.range > span{margin-right:2px;font-size:13px;color:var(--header-ink);text-shadow:0 1px 3px rgba(0,0,0,.4)}
+/* level 2 heading + level 3 notes */
+.near-head{margin:24px 4px 0;scroll-margin-top:130px}
+.near-head h2{margin:0;font-family:var(--hand);font-size:28px;line-height:1.25;color:var(--header-ink);text-shadow:0 2px 5px rgba(0,0,0,.35);text-wrap:balance}
+.near-head p{margin:4px 0 0;font-size:13px;color:var(--header-ink);text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.linkish{border:0;background:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+#near > .board{padding:16px 4px 40px}
+@media (max-width:520px){
+  .hotels{gap:10px}
+  .hotel-card{flex-direction:column;align-items:stretch;gap:6px;padding:8px}
+  .hotel-card img{width:100%;height:auto;aspect-ratio:4/3}
+  .hc-name{font-size:13px}
+  .hc-date,.hc-area{font-size:11px}
+  .near-head h2{font-size:24px}
+}
 .near-sec > h3{display:flex;align-items:baseline;gap:8px;margin:24px 4px 0;font-family:var(--hand);font-size:26px;color:var(--header-ink);text-shadow:0 2px 5px rgba(0,0,0,.35)}
 .near-sec > h3 small{font-family:var(--sans);font-size:13px;font-weight:500}
 .near-sec > .board{padding:16px 4px 18px}
 .near-none{margin:8px 4px 0;font-size:13px;color:var(--header-ink);opacity:.85;text-shadow:0 1px 3px rgba(0,0,0,.35)}
 
 /* wide 要吃啥 card on the home board */
-.title-card.wide{grid-column:1/-1;min-height:0;flex-direction:row;align-items:center;justify-content:flex-start;gap:18px;padding:26px 22px 20px}
+.title-card.wide{grid-column:1/-1;min-height:0;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:12px;padding:26px 22px 20px;cursor:default}
+.wide-open{display:flex;align-items:center;gap:18px;padding:0;border:0;background:none;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.wide-open:focus-visible,.stop:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
 .title-card.wide .emoji{font-size:46px}
 .title-card.wide h2{margin:0 0 2px}
 .wide-body{display:flex;flex-direction:column;gap:2px;min-width:0}
-.trip{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
-.stop{display:inline-flex;flex-direction:column;padding:5px 10px;border-radius:2px;background:rgba(255,255,255,.62);font-size:12px;line-height:1.35;color:var(--ink-soft)}
+.trip{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.stop{display:inline-flex;flex-direction:column;padding:6px 11px;border:0;border-radius:2px;cursor:pointer;text-align:left;font:inherit;
+  background:rgba(255,255,255,.62);font-size:12px;line-height:1.35;color:var(--ink-soft);transition:background .15s ease}
+.stop:hover{background:rgba(255,255,255,.95)}
 .stop b{font-size:13px;color:var(--ink)}
 .arrow{font-weight:700;color:var(--ac)}
 
@@ -266,10 +295,7 @@ footer{color:var(--header-ink);opacity:.75;font-size:12px;text-align:center;padd
         <div class="chips" id="chips"></div>
         <span class="count" id="count"></span>
       </div>
-      <div class="near-ctl" id="nearCtl" hidden>
-        <div class="chips" id="hotelChips" role="group" aria-label="選擇住的飯店"></div>
-        <div class="chips" id="radiusChips" role="group" aria-label="距離範圍"></div>
-      </div>
+      <div class="near-ctl" id="nearCtl" hidden></div>
     </div>
     <div class="board" id="board"></div>
     <div id="near" hidden></div>
@@ -289,7 +315,7 @@ const GROUPS = {
   buy:    {name:'必買清單', emoji:'⭐', desc:'香氛、蒙奇奇、保養品專門店'},
   stay:   {name:'住處・景點', emoji:'🏨', desc:'飯店入住日期，大象、綿羊農場、瀑布等景點'},
   other:  {name:'其他',     emoji:'📌', desc:'換錢、租機車、夜生活與大麻店'},
-  near:   {name:'要吃啥',   emoji:'🧭', desc:'選住的飯店，列出附近的食物、逛街、按摩、必買、景點'},
+  near:   {name:'要吃啥',   emoji:'🧭', desc:'先選住處，再看飯店附近的食物、逛街、按摩、必買、景點'},
 };
 const ORDER = ['food','shop','massage','buy','stay','other'];
 const $ = s => document.querySelector(s);
@@ -313,7 +339,9 @@ function renderHome(){
       <span class="emoji">${G.emoji}</span><h2>${G.name}</h2>
       <span class="cnt">${list.length} 個地點</span><span class="desc">${G.desc}</span></button>`;
   }).join('');
-  $('#titles').querySelectorAll('.title-card').forEach(b => b.addEventListener('click', () => go(b.dataset.g)));
+  $('#titles').querySelectorAll('[data-g]').forEach(b => b.addEventListener('click', () => go(b.dataset.g)));
+  // a hotel on the 要吃啥 card opens that hotel's neighbourhood directly
+  $('#titles').querySelectorAll('[data-h]').forEach(b => b.addEventListener('click', () => { state.hotel = +b.dataset.h; go('near'); }));
 }
 
 function renderTabs(){
@@ -381,50 +409,79 @@ function pickDefaultHotel(){
   return (hit || HOTELS[0] || {}).i;
 }
 state.hotel = pickDefaultHotel();
+state.cat = 'food';
 state.radius = 1.5;
 try { const r = parseFloat(localStorage.getItem('cm-near-radius')); if (RADII.includes(r)) state.radius = r; } catch (e) {}
 
 function nearCardHTML(){
-  const trip = HOTELS.map(h => `<span class="stop">${esc(h.note)}<b>${esc(h.short || h.name)}</b></span>`).join('<span class="arrow">→</span>');
-  return `<button class="title-card wide g-near" style="--r:-.4deg" data-g="near">
-    <span class="pin"></span><span class="emoji">${GROUPS.near.emoji}</span>
-    <span class="wide-body"><h2>${GROUPS.near.name}</h2><span class="cnt">${GROUPS.near.desc}</span>
-    <span class="trip">${trip}</span></span></button>`;
+  const trip = HOTELS.map(h => `<button class="stop" type="button" data-h="${h.i}">${esc(h.note)}<b>🏨 ${esc(h.short || h.name)}</b></button>`).join('<span class="arrow">→</span>');
+  return `<div class="title-card wide g-near" style="--r:-.4deg">
+    <span class="pin"></span>
+    <button class="wide-open" type="button" data-g="near"><span class="emoji">${GROUPS.near.emoji}</span>
+      <span class="wide-body"><h2>${GROUPS.near.name}</h2><span class="cnt">${GROUPS.near.desc}</span></span></button>
+    <div class="trip" role="group" aria-label="直接看某間飯店附近">${trip}</div></div>`;
 }
 
 function renderNear(){
   const h = HOTELS.find(x => x.i === state.hotel) || HOTELS[0];
   if (!h){ $('#near').innerHTML = '<p class="empty">清單裡還沒有住處</p>'; return; }
-  $('#hotelChips').innerHTML = HOTELS.map(x =>
-    `<button class="chip" aria-pressed="${x.i === h.i}" data-h="${x.i}">🏨 ${esc(x.short || x.name)}<small>${esc(x.note)}</small></button>`).join('');
-  $('#radiusChips').innerHTML = RADII.map(r =>
-    `<button class="chip" aria-pressed="${r === state.radius}" data-r="${r}">${r} 公里內</button>`).join('');
-  $('#hotelChips').querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => { state.hotel = +b.dataset.h; renderNear(); }));
-  $('#radiusChips').querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
-    state.radius = +b.dataset.r;
-    try { localStorage.setItem('cm-near-radius', String(state.radius)); } catch (e) {}
-    renderNear();
-  }));
-
+  const hName = h.short || h.name;
   const near = DATA.filter(d => d.i !== h.i && sectionOf(d))
     .map(d => ({d, m: distM(h, d)})).filter(x => x.m <= state.radius * 1000).sort((a, b) => a.m - b.m);
   const bySec = Object.fromEntries(SECTIONS.map(([key]) => [key, near.filter(x => sectionOf(x.d) === key)]));
-  const summary = SECTIONS.map(([key, , name]) => `${name} ${bySec[key].length}`).join('・');
+  const CATS = [...SECTIONS, ['all', '🗂️', '全部']];
+  const cat = CATS.find(c => c[0] === state.cat) || CATS[0];
+  const roomy = state.radius < 3 ? '，可以把範圍放大看看' : '';
   let k = 0;
-  $('#near').innerHTML = `<button class="hotel-banner" type="button" data-i="${h.i}">
-      ${h.img ? `<img src="${h.img}" alt="">` : ''}
-      <span class="hb-text"><span class="hb-k">住這裡</span><span class="hb-name">${esc(h.name)}</span>
-      <span class="hb-m">📅 ${esc(h.note)}・📍 ${esc(h.area)}</span>
-      <span class="hb-s">${state.radius} 公里內：${summary}</span></span></button>` +
-    SECTIONS.map(([key, emoji, name]) => {
-      const list = bySec[key];
-      return `<section class="near-sec"><h3>${emoji} ${name}<small>${list.length} 個</small></h3>` +
-        (list.length ? `<div class="board">${list.map(x => noteHTML(x.d, k++, distText(x.m))).join('')}</div>`
-                     : `<p class="near-none">${state.radius} 公里內沒有${state.radius < 3 ? '，可以把範圍放大看看' : ''}</p>`) +
-        `</section>`;
-    }).join('');
+
+  // Sticky crumb — level 1 (hotel) › level 2 (category); stays reachable while scrolling the notes.
+  $('#nearCtl').innerHTML = `<div class="chips" role="group" aria-label="飯店附近的分類">
+      <button class="crumb" type="button" data-top title="換住處">🏨 ${esc(hName)}</button><span class="crumb-sep" aria-hidden="true">›</span>
+      ${CATS.map(([key, emoji, name]) => `<button class="chip" type="button" aria-pressed="${key === cat[0]}" data-c="${key}">${emoji} ${name}<small>${key === 'all' ? near.length : bySec[key].length}</small></button>`).join('')}
+    </div>`;
+
+  // Level 1: the hotels, in stay order.
+  const hotels = HOTELS.map(x => `<button class="hotel-card" type="button" aria-pressed="${x.i === h.i}" data-h="${x.i}">
+      ${x.img ? `<img src="${x.img}" alt="">` : ''}
+      <span class="hc-text"><span class="hc-date">📅 ${esc(x.note)}</span><span class="hc-name">${esc(x.short || x.name)}</span><span class="hc-area">📍 ${esc(x.area)}</span></span>
+      ${x.i === h.i ? '<span class="hc-on">✓ 住這間</span>' : ''}</button>`).join('');
+  const range = RADII.map(r => `<button class="chip" type="button" aria-pressed="${r === state.radius}" data-r="${r}">${r} 公里內</button>`).join('');
+
+  // Level 2 heading, then level 3: the notes (one category, or every category in its own section).
+  const shown = cat[0] === 'all' ? near : bySec[cat[0]];
+  const head = `<div class="near-head" id="nearHead"><h2>${esc(hName)} 附近的${cat[0] === 'all' ? '所有地點' : cat[1] + ' ' + cat[2]}</h2>
+      <p>${state.radius} 公里內 ${shown.length} 個・由近到遠・<button class="linkish" type="button" data-detail data-i="${h.i}">看飯店資料</button></p></div>`;
+  const body = cat[0] === 'all'
+    ? SECTIONS.map(([key, emoji, name]) => {
+        const list = bySec[key];
+        return `<section class="near-sec"><h3>${emoji} ${name}<small>${list.length} 個</small></h3>` +
+          (list.length ? `<div class="board">${list.map(x => noteHTML(x.d, k++, distText(x.m))).join('')}</div>`
+                       : `<p class="near-none">${state.radius} 公里內沒有${roomy}</p>`) + `</section>`;
+      }).join('')
+    : (shown.length ? `<div class="board">${shown.map(x => noteHTML(x.d, k++, distText(x.m))).join('')}</div>`
+                    : `<p class="near-none">${state.radius} 公里內沒有${cat[2]}${roomy}</p>`);
+
+  $('#near').innerHTML = `<p class="near-label">住處（依入住日期）</p><div class="hotels">${hotels}</div>
+    <div class="range"><span>範圍</span>${range}</div>` + head + body;
   fitNotes();
 }
+
+// 要吃啥 clicks: hotel → category → note (delegated, so re-rendering keeps them working)
+$('#nearCtl').addEventListener('click', e => {
+  const t = e.target.closest('[data-c], [data-top]'); if (!t) return;
+  if (t.hasAttribute('data-top')) { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+  state.cat = t.dataset.c; renderNear();
+  const head = $('#nearHead'); if (head && head.getBoundingClientRect().top < 0) head.scrollIntoView();
+});
+$('#near').addEventListener('click', e => {
+  const t = e.target.closest('[data-h], [data-r], .note, [data-detail]'); if (!t) return;
+  if (t.dataset.h) { state.hotel = +t.dataset.h; renderNear(); }
+  else if (t.dataset.r) {
+    state.radius = +t.dataset.r;
+    try { localStorage.setItem('cm-near-radius', String(state.radius)); } catch (e) {}
+    renderNear();
+  } else openDetail(+t.dataset.i);
+});
 
 // Keep every square note free of half-cut lines: shorten the review sentence, then the chips, when space runs out.
 function fitNotes(){
@@ -486,8 +543,8 @@ function route(g = location.hash.slice(1)){
     state.g = null; $('#home').hidden = false; $('#boardView').hidden = true;
   }
 }
+$('#board').addEventListener('click', e => { const n = e.target.closest('.note'); if (n) openDetail(+n.dataset.i); });
 ['#board', '#near'].forEach(sel => {
-  $(sel).addEventListener('click', e => { const n = e.target.closest('.note, .hotel-banner'); if (n) openDetail(+n.dataset.i); });
   $(sel).addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('note')){ e.preventDefault(); openDetail(+e.target.dataset.i); } });
 });
 $('#q').addEventListener('input', e => { state.q = e.target.value; renderBoard(); });
